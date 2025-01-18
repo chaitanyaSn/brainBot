@@ -2,7 +2,7 @@
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import { ArrowRight, BookOpen, Brain, Laptop } from "lucide-react";
+import { ArrowRight, BookOpen, Brain, BrainCircuit, Laptop } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
@@ -30,8 +30,10 @@ export default function Home() {
       {/* Navigation */}
       <nav className="flex justify-between items-center px-6 py-4 bg-white shadow-sm">
         <div className="flex items-center space-x-2">
-          <BookOpen className="h-6 w-6 text-blue-500" />
-          <span className="text-xl font-bold text-gray-800">EduAI</span>
+
+           <BrainCircuit size={30} className='text-blue-600'/>
+            <h2 className='font-bold text-2xl'>Brain Bot</h2>
+
         </div>
         
         <div className="flex items-center gap-4">
@@ -43,7 +45,7 @@ export default function Home() {
             </SignInButton>
           </SignedOut>
           <SignedIn>
-            <UserButton afterSignOutUrl="/" />
+            <UserButton  />
           </SignedIn>
         </div>
       </nav>
@@ -64,14 +66,7 @@ export default function Home() {
                 <Link href={'/dashboard'}><Button variant="outline">Go to dashboard</Button></Link>
               </SignedIn>
             </div>
-            <SignedOut>
-              <SignInButton mode="modal">
-                <Button size="lg" className="flex items-center gap-2">
-                  Start Learning Now
-                  <ArrowRight className="h-5 w-5" />
-                </Button>
-              </SignInButton>
-            </SignedOut>
+            
           </div>
 
           {/* Features Section */}
