@@ -7,6 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios'
 import { useUser } from '@clerk/nextjs'
 import { useRouter } from 'next/navigation'
+import { toast } from 'sonner'
 
 
 
@@ -49,6 +50,8 @@ const Create = () => {
     } finally {
       setIsLoading(false)
       router.replace('/dashboard')
+      toast("Event has been created.")
+
     }
   }
 
