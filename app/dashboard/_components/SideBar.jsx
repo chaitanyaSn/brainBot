@@ -15,11 +15,6 @@ const SideBar = () => {
             path:'/dashboard'
         },
         {
-            name:'Upgrade',
-            icon:Shield,
-            path:'/dashboard/upgrade'
-        },
-        {
             name:'Profile',
             icon:UserCircle,
             path:'/dashboard/profile'
