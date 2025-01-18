@@ -25,7 +25,7 @@ const CoursePage = () => {
       <DashHeader/>
       <div className='mx-10 md:mx-36 lg:px-50 mt-10'>
       <CourseIntro course={course}/>
-      <StudyMaterial/>
+      <StudyMaterial courseId={courseId}/>
       <ChapterList course={course}/>
       </div>
      

@@ -76,3 +76,29 @@ body {
     @apply bg-background text-foreground;
   }
 }
+.chapter-content {
+  h1, h2, h3, h4 {
+      margin-top: 1.5em;
+      margin-bottom: 0.5em;
+      font-weight: 600;
+  }
+  
+  h1 { font-size: 2em; }
+  h2 { font-size: 1.5em; }
+  h3 { font-size: 1.25em; }
+  h4 { font-size: 1.1em; }
+  
+  p {
+      margin-bottom: 1em;
+      line-height: 1.6;
+  }
+  
+  ul, ol {
+      margin-left: 1.5em;
+      margin-bottom: 1em;
+  }
+  
+  li {
+      margin-bottom: 0.5em;
+  }
+}
