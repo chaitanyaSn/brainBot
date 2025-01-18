@@ -50,7 +50,7 @@ const Create = () => {
     } finally {
       setIsLoading(false)
       router.replace('/dashboard')
-      toast("Event has been created.")
+      toast("Genrating course")
 
     }
   }
