@@ -16,7 +16,7 @@ export async function POST(req) {
             }, { status: 400 });
         }
 
-        const PROMPT = `Generate study material in detail for ${topic} for ${courseType} and level ${difficultyLevel} with summary of course. List of chapters along with summary of each chapter, topic list in chapter in JSON format.`;
+        const PROMPT = `Generate study material in detail for ${topic} for ${courseType} and level of ${difficultyLevel} with summary and emoji icon for each chapter of course. List of chapters along with summary of each chapter, topic list in chapter in JSON format.`;
         
         try {
             // AI response using Gemini
