@@ -63,7 +63,7 @@ export default function Home() {
             </p>
             <div>
               <SignedIn>
-                <Link href={'/dashboard'}><Button className ="animate-bounce" variant="outline">Go to dashboard</Button></Link>
+                <Link href={'/dashboard'}><Button variant="outline" className="animate-bounce shadow-md">Go to dashboard</Button></Link>
               </SignedIn>
             </div>
             

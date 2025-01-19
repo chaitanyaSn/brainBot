@@ -51,9 +51,7 @@ export const CreateNewUser = inngest.createFunction(
 );
 
 export const GenrateNotes = inngest.createFunction(
-  { id: "genrate-course", 
-    retries: 3 // Add retries for reliability
-  },
+  { id: "genrate-course" },
   { event: "notes.genrate" },
   async ({ event, step }) => {
     const { course } = event.data;
@@ -64,50 +62,32 @@ export const GenrateNotes = inngest.createFunction(
         throw new Error('No chapters found in course layout');
       }
 
-      // Process one chapter at a time
-      const chapter = chapters[0];
-      await step.run('Generate notes for chapter', async () => {
+      // Using Promise.all for parallel processing
+      await Promise.all(chapters.map(async (chapter, index) => {
         const PROMPT = 'Generate exam material detail content for each chapter. Make sure to include all topic points in the content and give content in the form of HTML format(do not add html,head,body,title tag). The chapters: ' + JSON.stringify(chapter);
-        
-        try {
-          const result = await genrateNotes.sendMessage(PROMPT);
-          const airResp = result.response.text();
+        const result = await genrateNotes.sendMessage(PROMPT);
+        const airResp = result.response.text();
 
-          await db.insert(CHAPTER_NOTES_TABLE).values({
-            chapterId: 0,
-            courseId: course?.courseId,
-            notes: airResp
-          });
+        await db.insert(CHAPTER_NOTES_TABLE).values({
+          chapterId: index,
+          courseId: course?.courseId,
+          notes: airResp
+        });
+      }));
 
-          // If there are more chapters, trigger next chapter generation
-          if (chapters.length > 1) {
-            await inngest.send({
-              name: "notes.genrate",
-              data: {
-                course: {
-                  ...course,
-                  courseLayout: {
-                    ...course.courseLayout,
-                    chapters: chapters.slice(1) // Remove the first chapter
-                  }
-                }
-              }
-            });
-          } else {
-            // All chapters are done, update course status
-            await db.update(STUDY_MATERIAL_TABLE)
-              .set({ status: 'Ready' })
-              .where(eq(STUDY_MATERIAL_TABLE.courseId, course?.courseId));
-          }
-        } catch (error) {
-          console.error('Error generating notes:', error);
-          throw error; // Let Inngest retry
-        }
-      });
-
-      return 'Completed chapter';
+      return 'Completed';
     });
 
-    return { notesResult };
+    // Moving the update status step inside the function
+    const updateCourseStatusResult = await step.run('Update course status to ready', async () => {
+      const result = await db.update(STUDY_MATERIAL_TABLE)
+        .set({
+          status: 'Ready'
+        })
+        .where(eq(STUDY_MATERIAL_TABLE.courseId, course?.courseId));
+      return 'success';
+    });
+
+    return { notesResult, updateCourseStatusResult };
   }
 );
