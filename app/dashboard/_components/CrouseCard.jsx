@@ -6,7 +6,7 @@ import React from 'react'
 
 const CrouseCard = ({course}) => {
   return (
-    <div className='border p-4 rounded-md shadow-md hover:shadow-blue-200'>
+    <div className='border p-4 rounded-md shadow-md bg-white'>
       <div >
         <div className='flex justify-between items-center'>
             <Image src={'/notes.png'} alt='other' width={50} height={50}/>

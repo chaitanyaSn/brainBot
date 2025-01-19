@@ -3,7 +3,7 @@ import React from 'react'
 
 const DashHeader = () => {
   return (
-    <div className='p-5 shadow-md flex justify-end'>
+    <div className='p-5 shadow-md flex justify-end bg-slate-900 border-b'>
       <UserButton/>
     </div>
   )

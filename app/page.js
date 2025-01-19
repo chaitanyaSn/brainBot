@@ -38,10 +38,8 @@ export default function Home() {
         
         <div className="flex items-center gap-4">
           <SignedOut>
-            <Button variant="ghost">About</Button>
-            <Button variant="ghost">Features</Button>
             <SignInButton mode="modal">
-              <Button>Get Started</Button>
+              <Button variant="outline">Get Started</Button>
             </SignInButton>
           </SignedOut>
           <SignedIn>

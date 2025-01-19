@@ -6,7 +6,7 @@ const WelcomeBanner = () => {
     const {user}=useUser()
     console.log(user)
   return (
-    <div className='w-full p-5 bg-blue-400 text-white rounded-lg'>
+    <div className='w-full p-5 bg-gradient-to-br from-blue-400 to-indigo-600 text-white rounded-lg'>
      
       <div>
        <h2 className='font-bold text-3xl'>Hello, {user?.fullName}</h2> 

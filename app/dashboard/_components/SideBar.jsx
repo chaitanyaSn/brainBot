@@ -14,19 +14,13 @@ const SideBar = () => {
             icon:LayoutDashboard,
             path:'/dashboard'
         },
-        {
-            name:'Profile',
-            icon:UserCircle,
-            path:'/dashboard/profile'
-        },
-
 
     ]
   return (
     <div className=' p-6'>
         <div className='flex items-center'>
             <BrainCircuit size={30} className='text-blue-600'/>
-            <h2 className='font-bold text-2xl'>Brain Bot</h2>
+            <h2 className='font-bold text-2xl text-white'>Brain Bot</h2>
 
         </div>
         <div className='mt-10'>
